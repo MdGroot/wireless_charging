@@ -6,7 +6,7 @@ Below are some links that might help as a short introduction to github.\
 [GitHub quickstart (text)](https://docs.github.com/en/get-started/quickstart/hello-world)
 
 ## STM programming
-# STM programming goals
+### STM programming goals
 - [ ] Research ADC operation
 - [ ] Research DMA operation
 - [ ] Research PWM operation
@@ -15,7 +15,7 @@ Below are some links that might help as a short introduction to github.\
 - [ ] Create variable frequency PWM signals **if needed**
 
 ## Simulation
-# Simulation goals
+### Simulation goals
 - [x] Make a basic MMPT model
 - [ ] Get realistic timing in the model
 - [ ] Model the DCDC converter
