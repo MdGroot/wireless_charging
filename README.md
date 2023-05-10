@@ -13,6 +13,8 @@ Below are some links that might help as a short introduction to github.\
 - [ ] Identify pins and timers needed for different operations
 - [ ] Create complemantary PWM signals with deadtime
 - [ ] Create variable frequency PWM signals **if needed**
+### STM programming notes
+...
 
 ## Simulation
 ### Simulation goals
@@ -23,3 +25,5 @@ Below are some links that might help as a short introduction to github.\
 - [ ] Integrate the different models into 1
 - [ ] Improve the generator model
 - [ ] Expand the MMPT algorithm
+### Simulation notes
+...
