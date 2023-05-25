@@ -26,6 +26,6 @@ Below are some links that might help as a short introduction to github.\
 - [ ] Model the DCAC converter with coil
 - [ ] Integrate the different models into 1
 - [ ] Improve the generator model
-- [ ] Expand the MMPT algorithm
+- [x] Expand the MMPT algorithm
 ### Simulation notes
 ...
