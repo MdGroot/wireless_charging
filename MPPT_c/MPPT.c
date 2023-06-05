@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define step_size 0.0005
-#define slow_filter_size 5000
+#define slow_filter_size 1000
 #define medium_filter_size 500
 #define fast_filter_size 100
 #define lower_bound_value 0.95
