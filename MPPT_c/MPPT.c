@@ -2,81 +2,91 @@
 #include <stdlib.h>
 
 #define step_size 0.0005
-#define super_slow_filter_size 5000
-#define slow_filter_size 500
+#define slow_filter_size 5000
+#define medium_filter_size 500
 #define fast_filter_size 100
 #define lower_bound_value 0.95
 
 int timeout = 0;
 int set_fast = 0;
 int set_slow = 0;
-float duty_cycle = 0.9;
 int direction = 0;
-int super_slow_power_array[super_slow_filter_size];
-int slow_power_array[slow_filter_size];
-int fast_power_array[fast_filter_size];
-int fast_power_average;
-int super_slow_power_average;
-int slow_power_average;
-int power_lower_bound;
+float slow_filter_array[slow_filter_size];
+float medium_filter_array[medium_filter_size];
+float fast_filter_array[fast_filter_size];
 
-int MPPT(int Voltage, int Amps){
+int MPPT(int voltage, int amps, float duty_cycle_previous){
 
-    super_slow_power_array(2:end) = super_slow_power_array(1:end-1);
-    slow_power_array(2:end) = slow_power_array(1:end-1);
-    fast_power_array(2:end) = fast_power_array(1:end-1);
+    for(int i = slow_filter_size-1; i >= 0; i--){
+        slow_filter_array[i] = slow_filter_array[i-1];
+    }
+
+    for(int i = medium_filter_size-1; i >= 0; i--){
+        medium_filter_array[i] = medium_filter_array[i-1];
+    }
+
+    for(int i = fast_filter_size-1; i >= 0; i--){
+        fast_filter_array[i] = fast_filter_array[i-1];
+    }
 
 
+    float power = voltage * amps;
+    slow_filter_array[1] = power;
+    medium_filter_array[1] = power;
+    fast_filter_array[1] = power;
 
-    power = Voltage * Amps;
-    super_slow_power_array(1) = power;
-    slow_power_array(1) = power;
-    fast_power_array(1) = power;
+    float sum = 0;
+    for(int i = 0; i < slow_filter_size; i++){
+        sum = sum + slow_filter_array[i];
+    }
+    float slow_filter_average = sum / slow_filter_size;
 
-    super_slow_power_average = mean(super_slow_power_array);
-    slow_power_average = mean(slow_power_array);
-    fast_power_average = mean(fast_power_array);
-    power_lower_bound = lower_bound_value * super_slow_power_average;
-    direction = direction_previous;
+    sum = 0;
+    for(int i = 0; i < medium_filter_size; i++){
+        sum = sum + medium_filter_array[i];
+    }
+    float medium_filter_average = sum / medium_filter_size;
 
-    if slow_power_average > fast_power_average && setfast == 0
-        setfast = 1;
-        if direction_previous == 1
+    sum = 0;
+    for(int i = 0; i < fast_filter_size; i++){
+        sum = sum + fast_filter_array[i];
+    }
+    float fast_filter_average = sum / fast_filter_size;
+    float power_lower_bound = lower_bound_value * slow_filter_average;
+
+    if(medium_filter_average > fast_filter_average && set_fast == 0){
+        set_fast = 1;
+        if(direction == 1){
             direction = 0;
-        else
+        }
+        else{
             direction = 1;
-        end
-    end
+        }
+    }
 
-    if power_lower_bound < fast_power_average
+    if(power_lower_bound < fast_filter_average){
         timeout = timeout + 1;
-    end
+    } 
 
-    %if power_lower_bound > fast_power_average && setslow == 0 && timeout > 100
-    %    setslow = 1;
-    %    timeout = 0;
-    %    if direction_previous == 1
-    %        direction = 0;
-    %    else
-    %        direction = 1;
-    %    end
-    %end
+    //if(power_lower_bound > fast_filter_average && set_slow == 0 && timeout > 100){
+    //    set_slow = 1;
+    //    timeout = 0;
+    //    if(direction_previous == 1){
+    //        direction = 0;
+    //    }
+    //    else{
+    //        direction = 1;
+    //    }
+    //}
 
-    if power_lower_bound < fast_power_average
-        setslow = 0;
-    end
+    if(power_lower_bound < fast_filter_average){
+        set_slow = 0;
+    }
 
-    if slow_power_average < fast_power_average
-        setfast = 0;
-    end
+    if(medium_filter_average < fast_filter_average){
+        set_fast = 0;
+    }
 
-    D = D_previous + (1.213-D_previous) * ((step_size * direction) - (step_size * (1 - direction)));
-
-    D_previous = D;
-    power_out_avg_slow = slow_power_average;
-    power_out = power;
-    power_out_avg_fast = fast_power_average;
-    power_out_avg_super_slow = super_slow_power_average;
-    power_out_lower_bound = power_lower_bound;
-    direction_previous = direction;
+    float duty_cycle = duty_cycle_previous + (1.213-duty_cycle_previous) * ((step_size * direction) - (step_size * (1 - direction)));
+    return duty_cycle;
 }
