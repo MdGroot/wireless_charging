@@ -48,6 +48,7 @@ int MPPT(int voltage, int amps, float duty_cycle_previous){
         sum = sum + slow_filter_array[i];
     }
     float slow_filter_average = sum / slow_filter_size;
+    float power_lower_bound = lower_bound_value * slow_filter_average;
 
     sum = 0;
     for(int i = 0; i < medium_filter_size; i++){
@@ -60,7 +61,6 @@ int MPPT(int voltage, int amps, float duty_cycle_previous){
         sum = sum + fast_filter_array[i];
     }
     float fast_filter_average = sum / fast_filter_size;
-    float power_lower_bound = lower_bound_value * slow_filter_average;
 
     //change direction when fast mean is lower as medium mean
     if(fast_medium_crossing){
