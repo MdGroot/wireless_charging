@@ -1,0 +1,18 @@
+2023-05-08 11:06:54,679 [INFO] Activator:179 - 
+
+
+2023-05-08 11:06:54,681 [INFO] Activator:180 - !SESSION log4j initialized
+2023-05-08 11:06:54,851 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT WebKitGDBus: error creating DBus server Error binding to address (GUnixSocketAddress): No such file or directory
+2023-05-08 11:06:54,852 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT WebKit: error initializing DBus server, dBusServer == 0
+2023-05-08 11:35:40,007 [INFO] Activator:179 - 
+
+
+2023-05-08 11:35:40,008 [INFO] Activator:180 - !SESSION log4j initialized
+2023-05-08 11:35:40,176 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT WebKitGDBus: error creating DBus server Error binding to address (GUnixSocketAddress): No such file or directory
+2023-05-08 11:35:40,177 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT WebKit: error initializing DBus server, dBusServer == 0
+2023-05-11 16:50:40,609 [INFO] Activator:179 - 
+
+
+2023-05-11 16:50:40,610 [INFO] Activator:180 - !SESSION log4j initialized
+2023-05-11 16:50:40,731 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT WebKitGDBus: error creating DBus server Error binding to address (GUnixSocketAddress): No such file or directory
+2023-05-11 16:50:40,731 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT WebKit: error initializing DBus server, dBusServer == 0
