@@ -24,7 +24,7 @@ Below are some links that might help as a short introduction to github.\
 - [x] Get realistic timing in the model
 - [x] Model the DCDC converter
 - [ ] Model the DCAC converter with coil
-- [ ] Integrate the different models into 1
+- [x] Integrate the different models into 1
 - [ ] Improve the generator model
 - [x] Expand the MMPT algorithm
 ### Simulation notes
