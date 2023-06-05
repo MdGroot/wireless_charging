@@ -8,11 +8,11 @@ Below are some links that might help as a short introduction to github.\
 
 ## STM programming
 ### STM programming goals
-- [ ] Research ADC operation
-- [ ] Research DMA operation
-- [ ] Research PWM operation
-- [ ] Identify pins and timers needed for different operations
-- [ ] Create complemantary PWM signals with deadtime
+- [x] Research ADC operation
+- [x] Research DMA operation
+- [x] Research PWM operation
+- [x] Identify pins and timers needed for different operations
+- [x] Create complemantary PWM signals with deadtime
 - [ ] Integrate MPPT into controller
 - [ ] Create variable frequency PWM signals **if needed**
 ### STM programming notes
